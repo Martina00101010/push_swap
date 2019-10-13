@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 02:53:09 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/13 04:36:14 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/13 12:12:32 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,22 @@ void	ft_skfree(t_stack **sk);
 void	ft_error(void);
 void	ft_alloc(int *alloc, int n, int ***sk);
 
-void	ft_prepare(t_stack *a, t_stack *b, char *arg, int ***sk);
-//void	push_swap(t_stack *a, t_stack *b);
+void	ft_prepare(t_stack **a, t_stack **b, char *arg, int ***sk);
+void	push_swap(t_stack **a, t_stack **b);
 
 /*
 **	stack operations
 */
 
-//void	ft_swap(int *el, int i);
-//void	ft_push(t_stack *to, t_stack *from);
-//void	ft_rotate(t_stack *sk);
-//void	ft_reverse_rotate(t_stack *sk);
-//
+void	ft_swap(t_stack **sk);
+void	ft_push(t_stack **to, t_stack **from);
+void	ft_rotate(t_stack **sk);
+void	ft_reverse_rotate(t_stack **sk);
+
 void	ft_print_stack(t_stack *sk);
-//void	ft_print_stacks(t_stack *a, t_stack *b);
+void	ft_print_stacks(t_stack *a, t_stack *b);
+
+int		ft_issorted(t_stack *sk);
+void	ft_three(t_stack **a, t_stack **b);
 
 #endif

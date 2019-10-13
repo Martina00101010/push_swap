@@ -6,13 +6,11 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 02:42:04 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/13 04:31:33 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/13 05:00:02 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libps.h"
-
-#include <stdio.h>
 
 void	ft_skadd(t_stack **top, t_stack *el)
 {
@@ -22,7 +20,6 @@ void	ft_skadd(t_stack **top, t_stack *el)
 		return ;
 	if (*top == NULL)
 	{
-		printf("null\n");
 		*top = el;
 		return ;
 	}

@@ -6,7 +6,7 @@
 #    By: pberge <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 02:55:16 by pberge            #+#    #+#              #
-#    Updated: 2019/10/13 04:18:23 by pberge           ###   ########.fr        #
+#    Updated: 2019/10/13 12:08:00 by pberge           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,14 @@ CMPLR = gcc
 WFLAGS = -Wall -Wextra -Werror
 
 SORT_SRC_ = main.c 				\
+			push_swap.c			\
 			ft_prepare.c		\
 			ft_print_stack.c	\
+			ft_stack.c			\
 			ft_sknew.c			\
 			ft_skadd.c			\
-			ft_skfree.c
-#			push_swap.c			\
-#			ft_stack.c			\
+			ft_skfree.c			\
+			ft_sort.c
 
 COMMON_SRC_ = ft_error.c
 
