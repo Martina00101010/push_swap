@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 23:40:09 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/13 12:11:52 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/15 12:58:39 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,57 +32,55 @@ void	ft_min_max(t_stack *sk, int *min, int *max)
 }
 
 /*
+**	pushing next patch from A according to flag
+*/
+
+void	ft_atob(t_stack **a, t_stack **b)
+{
+	int		median;
+	int		min;
+	int		max;
+	char	flag;
+
+//	ft_printf("divide\n");
+	min = 0;
+	max = 0;
+	flag = (*a)->fl;	
+	ft_min_max(*a, &min, &max);
+	median = max / 2 + min;
+	while (!(*a)->fl)
+	{
+		(*a)->fl++;
+		if ((*a)->el > median)
+			ft_rotate(a);
+		else
+			ft_push(b, a);
+	}
+}
+
+/*
 **	move elements less than median to stack B
 **	median moves to B, too
 */
 
 void	ft_divide(t_stack **a, t_stack **b)
 {
-	int		median;
-	int		min;
-	int		max;
+	char	flag;
 
-	min = 0;
-	max = 0;
-	ft_min_max(*a, &min, &max);
-	median = max / 2 + min;
-	ft_printf("*********************\n");
-	ft_printf("median %i\n", median);
-	while (1)
+	flag = (*a)->fl;
+	if (!flag)
+		ft_atob(a, b);
+	else
 	{
-		(*a)->fl = 1;
-		if ((*a)->el > median)
-			ft_rotate(a);
-		else
+		while ((*a)->fl == flag)
 			ft_push(b, a);
-		if ((*a)->fl == 1)
-			break ;
 	}
-	ft_print_stacks(*a, *b);
-}
-
-/*
-**	counting size of stack B
-*/
-
-int		ft_len(t_stack **b)
-{
-	t_stack	*tmp;
-	int		len;
-
-	len = 0;
-	tmp = (*b)->prev;
-	while (tmp != *b)
-	{
-		tmp = tmp->prev;
-		len++;
-	}
-	return (len > 2 ? 1 : 0);
 }
 
 /*
 **	splitting B by median and pushing bigger elements to A
-**	untill B has 3 or mere elements
+**	until B has 3 or mere elements.
+**	A looks like staircase
 */
 
 void	ft_staircase(t_stack **a, t_stack **b)
@@ -93,23 +91,20 @@ void	ft_staircase(t_stack **a, t_stack **b)
 	char	fl;
 	int		k;
 
-	k = 4;
-	fl = 2;
-	while (ft_len(b))
+//	ft_printf("staircase\n");
+	while ((k = ft_sklen(*b)) > 3)
 	{
+		fl = (*b)->fl + 1;
 		ft_min_max(*b, &min, &max);
 		median = (max - min) / 2 + min;
-		ft_printf("median %i\n", median);
 		while ((*b)->fl != fl)
 		{
-			(*b)->fl = fl;
+			(*b)->fl++;
 			if ((*b)->el <= median)
 				ft_rotate(b);
 			else
 				ft_push(a, b);
 		}
-		ft_print_stacks(*a, *b);
-		fl++;
 	}
 }
 
@@ -117,13 +112,13 @@ void	ft_staircase(t_stack **a, t_stack **b)
 **	sort
 */
 
-void	push_swap(t_stack **a, t_stack **b)
+void	push_swap(t_stack **a, t_stack **b, t_ps *ps)
 {
-	ft_divide(a, b);
-	ft_printf("\n");
-	ft_staircase(a, b);
-	ft_printf("sorted %i\n", ft_issorted(*b));
-	if (ft_issorted(*b))
-		ft_three(a, b);
-	ft_print_stacks(*a, *b);
+	int	min;
+	int	max;
+
+	ft_min_max(*a, &min, &max);
+	while ((*a)->el != min || *b != NULL)
+		ft_sort(a, b, ps);
+//	ft_print_stacks(*a, *b);
 }

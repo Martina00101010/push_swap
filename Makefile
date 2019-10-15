@@ -6,7 +6,7 @@
 #    By: pberge <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 02:55:16 by pberge            #+#    #+#              #
-#    Updated: 2019/10/13 12:08:00 by pberge           ###   ########.fr        #
+#    Updated: 2019/10/14 15:59:51 by pberge           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SORT_SRC_ = main.c 				\
 			ft_sknew.c			\
 			ft_skadd.c			\
 			ft_skfree.c			\
-			ft_sort.c
+			ft_sort.c			\
+			ft_sklen.c
 
 COMMON_SRC_ = ft_error.c
 

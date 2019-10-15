@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 23:45:40 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/13 10:25:36 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/13 14:22:12 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ void	ft_push(t_stack **to, t_stack **from)
 
 	mv = *from;
 	*from = (mv != mv->prev) ? mv->prev : NULL;
-	(*from)->next = mv->next;
-	(*from)->next->prev = *from;
+	if (*from != NULL)
+	{
+		(*from)->next = mv->next;
+		(*from)->next->prev = *from;
+	}
 	mv->prev = (*to != NULL) ? *to : mv;
 	mv->next = (*to != NULL) ? (*to)->next : mv;
 	if (*to != NULL)

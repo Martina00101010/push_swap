@@ -6,14 +6,12 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 04:15:20 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/13 08:31:31 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/15 12:28:50 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libps.h"
 #include <stdlib.h>
-
-//#include <stdio.h>
 
 void	ft_skfree(t_stack **sk)
 {

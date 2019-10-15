@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 03:59:45 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/13 08:53:09 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/13 15:01:47 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	ft_print_stack(t_stack *sk)
 	head = sk;
 	while (1)
 	{
-		ft_printf("%i\n", sk->el);
+		ft_printf("%i\t%i\n", sk->el, sk->fl);
 		sk = sk->prev;
 		if (sk == head)
 			break ;
 	}
-	ft_printf("**********");
+	ft_printf("**********\n");
 }
 
 void	ft_print_stacks(t_stack *a, t_stack *b)
@@ -38,18 +38,18 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 	{
 		if (at != NULL)
 		{
-			ft_printf("%i\t", at->el);
+			ft_printf("%3i %i\t", at->el, at->fl);
 			at = at->prev;
 		}
 		else
 			ft_printf(" \t");
 		if (bt != NULL)
 		{
-			ft_printf("%i\n", bt->el);
+			ft_printf("%3i %i\n", bt->el, bt->fl);
 			bt = bt->prev;
 		}
 		else
-			ft_printf(" \n");
+			ft_printf(" \t\n");
 		if (at == a)
 			at = a = NULL;
 		if (bt == b)
@@ -58,5 +58,5 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 		if (at == a && bt == b)
 			break ;
 	}
-	ft_printf("---------\na\tb\n");
+	ft_printf("---------------\n");
 }
