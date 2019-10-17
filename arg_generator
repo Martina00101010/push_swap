@@ -1,1 +1,2 @@
-"$(ruby -e 'puts (1..21).to_a.shuffle.join(" ")')"
+#!/bin/sh
+echo "$(ruby -e 'puts (1..10).to_a.shuffle.join(" ")')"

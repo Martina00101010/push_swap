@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 23:40:09 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/17 04:48:37 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/17 06:18:00 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,13 @@ void	push_swap(t_stack **a, t_stack **b, t_ps *ps)
 	int	max;
 
 	ft_min_max(*a, &min, &max);
-	while ((*a)->el != min || *b != NULL || ft_issorted(*a) == 0)
-		ft_sort(a, b, ps);
-	ft_print_stacks(*a, *b);
+	if (ps->algo)
+		ft_linksort(a, b, ps);
+	else
+	{
+		while ((*a)->el != min || *b != NULL || ft_issorted(*a) == 0)
+			ft_sort(a, b, ps);
+	}
+//	ft_print_stacks(*a, *b);
 //	ft_printf("%s\n", ps->out.buff);
 }

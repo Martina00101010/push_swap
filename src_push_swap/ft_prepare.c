@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 04:09:57 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/17 01:47:40 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/17 06:56:43 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static void	ft_fill(t_stack **a, char *arg, t_ps *ps)
 			ft_exception(a, &ps);
 	while (arr[i] != NULL)
 		i++;
+	ps->size = i;
 	while (--i > -1)
 	{
 		if (!(new = ft_sknew()))
@@ -86,6 +87,7 @@ t_ps		*ft_prepare(t_stack **a, t_stack **b, char *arg)
 	if (!(ps = (t_ps *)malloc(sizeof(t_ps))))
 		ft_error();
 	ft_bzero(ps, sizeof(t_ps));
+	ps->algo = 1;
 	ft_fill(a, arg, ps);
 	ft_bzero(&ps->out, sizeof(t_out));
 	ft_bzero(&ps->out.buff, BUFF_SIZE + 1);
