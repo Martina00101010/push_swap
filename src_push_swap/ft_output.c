@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_skfree.c                                        :+:      :+:    :+:   */
+/*   ft_output.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 04:15:20 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/16 03:13:14 by pberge           ###   ########.fr       */
+/*   Created: 2019/10/17 00:14:48 by pberge            #+#    #+#             */
+/*   Updated: 2019/10/17 03:43:51 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libps.h"
-#include <stdlib.h>
+#include <unistd.h>
 
-void	ft_skfree(t_stack **sk)
+void	ft_output(t_out *out, char *op)
 {
-	t_stack	*end;
-	t_stack	*tmp;
+	int		len;
 
-	if (*sk == NULL)
-		return ;
-	end = (*sk)->next;
-	while (*sk != end)
+	len = ft_strlen(op);
+	if (BUFF_SIZE - out->i < len)
 	{
-		tmp = (*sk)->prev;
-		free(*sk);
-		*sk = tmp;
+		write(1, out->buff, out->i);
+		ft_bzero(out->buff, BUFF_SIZE + 1);
+		out->i = 0;
 	}
-	free(end);
+	ft_strcat(out->buff, op);
+	out->i += len;
 }

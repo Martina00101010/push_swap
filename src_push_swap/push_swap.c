@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 23:40:09 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/15 12:58:39 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/17 04:48:37 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_min_max(t_stack *sk, int *min, int *max)
 **	pushing next patch from A according to flag
 */
 
-void	ft_atob(t_stack **a, t_stack **b)
+void	ft_atob(t_stack **a, t_stack **b, t_out *out)
 {
 	int		median;
 	int		min;
@@ -45,35 +45,37 @@ void	ft_atob(t_stack **a, t_stack **b)
 //	ft_printf("divide\n");
 	min = 0;
 	max = 0;
-	flag = (*a)->fl;	
+	flag = (*a)->fl;
 	ft_min_max(*a, &min, &max);
 	median = max / 2 + min;
 	while (!(*a)->fl)
 	{
 		(*a)->fl++;
 		if ((*a)->el > median)
-			ft_rotate(a);
+			ft_rotate(a, out, "ra\n");
 		else
-			ft_push(b, a);
+			ft_push(b, a, out, "pb\n");
 	}
 }
 
 /*
-**	move elements less than median to stack B
-**	median moves to B, too
+**	that's a crazy func and it won't be changed
+**				because I like it!
+**	the first time it splits stack A
+**	the next time it pushes patches from A to B
 */
 
-void	ft_divide(t_stack **a, t_stack **b)
+void	ft_divide(t_stack **a, t_stack **b, t_out *out, char *op)
 {
 	char	flag;
 
 	flag = (*a)->fl;
-	if (!flag)
-		ft_atob(a, b);
+	if (flag == 0)
+		ft_atob(a, b, out);
 	else
 	{
 		while ((*a)->fl == flag)
-			ft_push(b, a);
+			ft_push(b, a, out, "pb\n");
 	}
 }
 
@@ -83,7 +85,7 @@ void	ft_divide(t_stack **a, t_stack **b)
 **	A looks like staircase
 */
 
-void	ft_staircase(t_stack **a, t_stack **b)
+void	ft_staircase(t_stack **a, t_stack **b, t_out *out, char *op)
 {
 	int		median;
 	int		min;
@@ -97,13 +99,20 @@ void	ft_staircase(t_stack **a, t_stack **b)
 		fl = (*b)->fl + 1;
 		ft_min_max(*b, &min, &max);
 		median = (max - min) / 2 + min;
+		out->flag++;
 		while ((*b)->fl != fl)
 		{
 			(*b)->fl++;
+//			ft_printf("%i\n", median);
+//			ft_print_stacks(*a, *b);
 			if ((*b)->el <= median)
-				ft_rotate(b);
+				ft_rotate(b, out, "rb\n");
 			else
-				ft_push(a, b);
+			{
+				(*b)->fl = out->flag;
+				ft_push(a, b, out, "pa\n");
+			}
+//			ft_print_stacks(*a, *b);
 		}
 	}
 }
@@ -118,7 +127,8 @@ void	push_swap(t_stack **a, t_stack **b, t_ps *ps)
 	int	max;
 
 	ft_min_max(*a, &min, &max);
-	while ((*a)->el != min || *b != NULL)
+	while ((*a)->el != min || *b != NULL || ft_issorted(*a) == 0)
 		ft_sort(a, b, ps);
-//	ft_print_stacks(*a, *b);
+	ft_print_stacks(*a, *b);
+//	ft_printf("%s\n", ps->out.buff);
 }

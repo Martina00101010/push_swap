@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 23:45:40 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/13 14:22:12 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/17 02:30:41 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	swap first two elements in stack
 */
 
-void	ft_swap(t_stack **sk)
+void	ft_swap(t_stack **sk, t_out *out, char *op)
 {
 	t_stack	*top;
 	t_stack	*tmp;
@@ -30,13 +30,14 @@ void	ft_swap(t_stack **sk)
 	top->next = tmp;
 	tmp->next->prev = tmp;
 	*sk = tmp;
+	ft_output(out, op);
 }
 
 /*
 **	push element to another stack
 */
 
-void	ft_push(t_stack **to, t_stack **from)
+void	ft_push(t_stack **to, t_stack **from, t_out *out, char *op)
 {
 	t_stack	*mv;
 
@@ -55,6 +56,7 @@ void	ft_push(t_stack **to, t_stack **from)
 		*to = mv;
 	mv->next->prev = mv;
 	*to = mv;
+	ft_output(out, op);
 }
 
 /*
@@ -62,11 +64,12 @@ void	ft_push(t_stack **to, t_stack **from)
 **	the first el becomes last
 */
 
-void	ft_rotate(t_stack **sk)
+void	ft_rotate(t_stack **sk, t_out *out, char *op)
 {
 	if (*sk == NULL)
 		return ;
 	*sk = (*sk)->prev;
+	ft_output(out, op);
 }
 
 /*
@@ -74,9 +77,10 @@ void	ft_rotate(t_stack **sk)
 **	the last el becomes first
 */
 
-void	ft_reverse_rotate(t_stack **sk)
+void	ft_reverse_rotate(t_stack **sk, t_out *out, char *op)
 {
 	if (*sk == NULL)
 		return ;
 	*sk = (*sk)->next;
+	ft_output(out, op);
 }

@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 02:49:55 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/15 12:57:26 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/16 02:55:39 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,11 @@ void	ft_exception(t_stack **a, t_ps **ps)
 		ft_skfree(a);
 	free(*ps);
 	ft_error();
+}
+
+void	ft_end(t_stack **a, t_stack **b, t_ps **ps)
+{
+	ft_skfree(a);
+	ft_skfree(b);
+	free(*ps);
 }

@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 04:09:57 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/15 12:58:50 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/17 01:47:40 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static void	ft_sortfuncs(t_sort *s)
+void	ft_sortfuncs(t_sort *s)
 {
 	(*s)[0] = ft_divide;
 	(*s)[2] = ft_two;
@@ -66,7 +66,7 @@ static void	ft_fill(t_stack **a, char *arg, t_ps *ps)
 	while (--i > -1)
 	{
 		if (!(new = ft_sknew()))
-				ft_exception(a, &ps);
+			ft_exception(a, &ps);
 		ft_skadd(a, new);
 		(*a)->el = ft_atoi(arr[i]);
 		free(arr[i]);
@@ -85,7 +85,10 @@ t_ps		*ft_prepare(t_stack **a, t_stack **b, char *arg)
 	ft_validation(arg);
 	if (!(ps = (t_ps *)malloc(sizeof(t_ps))))
 		ft_error();
+	ft_bzero(ps, sizeof(t_ps));
 	ft_fill(a, arg, ps);
+	ft_bzero(&ps->out, sizeof(t_out));
+	ft_bzero(&ps->out.buff, BUFF_SIZE + 1);
 	ft_sortfuncs(&ps->sort);
 	return (ps);
 }
