@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 03:59:45 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/13 15:01:47 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/18 04:05:11 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_print_stack(t_stack *sk)
 	head = sk;
 	while (1)
 	{
-		ft_printf("%i\t%i\n", sk->el, sk->fl);
+		ft_printf("%i\t%i\n", sk->el, sk->afl);
 		sk = sk->prev;
 		if (sk == head)
 			break ;
@@ -38,14 +38,14 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 	{
 		if (at != NULL)
 		{
-			ft_printf("%3i %i\t", at->el, at->fl);
+			ft_printf("%3i %i %i\t", at->el, at->afl, bt->bfl);
 			at = at->prev;
 		}
 		else
 			ft_printf(" \t");
 		if (bt != NULL)
 		{
-			ft_printf("%3i %i\n", bt->el, bt->fl);
+			ft_printf("%3i %i %i\n", bt->el, bt->afl, bt->bfl);
 			bt = bt->prev;
 		}
 		else
@@ -54,7 +54,7 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 			at = a = NULL;
 		if (bt == b)
 			bt = b = NULL;
-		bt = (bt == b) ? NULL : bt;
+//		bt = (bt == b) ? NULL : bt;
 		if (at == a && bt == b)
 			break ;
 	}

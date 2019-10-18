@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 04:09:57 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/17 06:56:43 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/18 06:45:01 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include <stdlib.h>
 #include "libft.h"
 
-void	ft_sortfuncs(t_sort *s)
-{
-	(*s)[0] = ft_divide;
-	(*s)[2] = ft_two;
-	(*s)[1] = ft_btoa;
-	(*s)[3] = ft_three;
-	(*s)[4] = ft_staircase;
-}
+//void	ft_sortfuncs(t_sort *s)
+//{
+//	(*s)[0] = ft_divide;
+//	(*s)[2] = ft_two;
+//	(*s)[1] = ft_btoa;
+//	(*s)[3] = ft_three;
+//	(*s)[4] = ft_staircase;
+//}
 
 /*
 **	count number of integers
@@ -48,6 +48,8 @@ static void	ft_validation(char *arg)
 		ft_error();
 }
 
+char	**ft_get_ints(char **arg)
+
 /*
 **	fills stack with values
 */
@@ -63,7 +65,7 @@ static void	ft_fill(t_stack **a, char *arg, t_ps *ps)
 			ft_exception(a, &ps);
 	while (arr[i] != NULL)
 		i++;
-	ps->size = i;
+	ps->bsize = i;
 	while (--i > -1)
 	{
 		if (!(new = ft_sknew()))
@@ -76,21 +78,18 @@ static void	ft_fill(t_stack **a, char *arg, t_ps *ps)
 }
 
 /*
-**	allocates stacks and fills stack A
+**	allocates stacks
 */
 
-t_ps		*ft_prepare(t_stack **a, t_stack **b, char *arg)
+t_ps		*ft_prepare(t_stack **a, t_stack **b)
 {
 	t_ps	*ps;
 
-	ft_validation(arg);
 	if (!(ps = (t_ps *)malloc(sizeof(t_ps))))
 		ft_error();
 	ft_bzero(ps, sizeof(t_ps));
-	ps->algo = 1;
-	ft_fill(a, arg, ps);
 	ft_bzero(&ps->out, sizeof(t_out));
 	ft_bzero(&ps->out.buff, BUFF_SIZE + 1);
-	ft_sortfuncs(&ps->sort);
+//	ft_sortfuncs(&ps->sort);
 	return (ps);
 }

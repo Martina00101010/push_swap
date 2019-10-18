@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 02:53:09 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/17 06:51:13 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/18 06:29:43 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 typedef struct	s_stack
 {
 	int				el;
-	char			fl;
-	char			rfl;
+	char			afl;
+	char			bfl;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }				t_stack;
@@ -41,8 +41,7 @@ typedef struct	s_push_swap
 {
 	t_sort	sort;
 	t_out	out;
-	char	algo;
-	int		size;
+	int		bsize;
 }				t_ps;
 
 /*
@@ -87,15 +86,6 @@ void			ft_print_stacks(t_stack *a, t_stack *b);
 **	sorting funcs
 **	according to number of elements in stack
 */
-
-int				ft_issorted(t_stack *sk);
-void			ft_divide(t_stack **a, t_stack **b, t_out *out, char *op);
-void			ft_two(t_stack **a, t_stack **b, t_out *out, char *op);
-void			ft_three(t_stack **a, t_stack **b, t_out *out, char *op);
-void			ft_sort(t_stack **a, t_stack **b, t_ps *ps);
-void			ft_atob(t_stack **a, t_stack **b, t_out *out);
-void			ft_staircase(t_stack **a, t_stack **b, t_out *out, char *op);
-void			ft_btoa(t_stack **a, t_stack **b, t_out *out, char *op);
 
 /*
 **	sorting by links

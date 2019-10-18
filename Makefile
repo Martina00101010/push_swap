@@ -6,7 +6,7 @@
 #    By: pberge <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 02:55:16 by pberge            #+#    #+#              #
-#    Updated: 2019/10/17 06:12:22 by pberge           ###   ########.fr        #
+#    Updated: 2019/10/18 06:17:41 by pberge           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ SORT_SRC_ = main.c 				\
 			ft_sknew.c			\
 			ft_skadd.c			\
 			ft_skfree.c			\
-			ft_sort.c			\
 			ft_sklen.c			\
 			ft_output.c			\
 			ft_linksort.c
