@@ -6,12 +6,13 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 02:12:58 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/15 12:35:45 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/20 02:09:33 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "libstack.h"
 #include <stdlib.h>
+#include "libft.h"
 
 t_stack		*ft_sknew(void)
 {

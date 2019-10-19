@@ -6,43 +6,53 @@
 #    By: pberge <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 02:55:16 by pberge            #+#    #+#              #
-#    Updated: 2019/10/19 05:16:10 by pberge           ###   ########.fr        #
+#    Updated: 2019/10/20 02:46:49 by pberge           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SORT = push_swap
+CHEC = checker
 CMPLR = gcc
 WFLAGS = -Wall -Wextra -Werror
 
 SORT_SRC_ = main.c 				\
 			push_swap.c			\
 			ft_prepare.c		\
-			ft_print_stack.c	\
-			ft_stack.c			\
-			ft_sknew.c			\
-			ft_skadd.c			\
-			ft_skfree.c			\
-			ft_sklen.c			\
-			ft_output.c			\
 			ft_linksort.c		\
-			ft_fill_sk.c		\
 			ft_toss_eval.c		\
-			ft_issorted.c
 
-COMMON_SRC_ = ft_error.c
+COMMON_SRC_ = ft_error.c		\
+			  ft_fill_sk.c		\
+			  ft_print_stack.c	\
+  			  ft_stack.c		\
+  			  ft_sknew.c		\
+  			  ft_skadd.c		\
+  			  ft_skfree.c		\
+  			  ft_sklen.c		\
+  			  ft_output.c		\
+			  ft_issorted.c
+
+CHEC_SRC_ = main.c
 
 SORTF = src_push_swap/
 COMMONF = common/
-OBJF = obj/
+OBJFS = obj_ps/
+OBJFC = obj_ch/
+CHECF = src_checker/
 
 SORT_SRC = $(addprefix $(SORTF), $(SORT_SRC_))
 SORT_SRC += $(addprefix $(COMMONF), $(COMMON_SRC_))
+CHEC_SRC = $(addprefix $(CHECF), $(CHEC_SRC_))
+CHEC_SRC += $(addprefix $(COMMONF), $(COMMON_SRC_))
 
 SORT_OBJ_ = $(SORT_SRC_:.c=.o)
 COMMON_OBJ_ = $(COMMON_SRC_:.c=.o)
+CHEC_OBJ_ = $(CHEC_SRC_:.c=.o)
 
-SORT_OBJ = $(addprefix $(OBJF), $(SORT_OBJ_))
-SORT_OBJ += $(addprefix $(OBJF), $(COMMON_OBJ_))
+SORT_OBJ = $(addprefix $(OBJFS), $(SORT_OBJ_))
+SORT_OBJ += $(addprefix $(OBJFS), $(COMMON_OBJ_))
+CHEC_OBJ = $(addprefix $(OBJFC), $(CHEC_OBJ_))
+CHEC_OBJ += $(addprefix $(OBJFC), $(COMMON_OBJ_))
 
 DEL = rm -rf
 
@@ -52,36 +62,51 @@ LPFT = $(PFTF)/libftprintf.a
 INC = -I inc -I libft -I ft_printf/inc
 LIB = -L libft -lft -L ft_printf -lftprintf
 
-all: $(SORT)
+all: $(CHEC) $(SORT)
 
-$(SORT): $(OBJF) $(SORT_OBJ) $(LPFT)
-	$(CMPLR) $(INC) $(LIB) $(SORT_OBJ) -o $(SORT)
+$(SORT): $(OBJFS) $(SORT_OBJ) $(LPFT)
+	$(CMPLR) $(WFLAGS) $(INC) $(LIB) $(SORT_OBJ) -o $(SORT)
 
-$(OBJF)%.o: $(SORTF)%.c
+$(CHEC): $(OBJFC) $(CHEC_OBJ) $(LPFT)
+	$(CMPLR) $(WFLAGS) $(INC) $(LIB) $(CHEC_OBJ) -o $(CHEC)
+
+$(OBJFC)%.o: $(CHECF)%.c
 	$(CMPLR) $(INC) -c $< -o $@
 
-$(OBJF)%.o: $(COMMONF)%.c
+$(OBJFS)%.o: $(SORTF)%.c
 	$(CMPLR) $(INC) -c $< -o $@
 
-$(OBJF):
-	mkdir $(OBJF)
+$(OBJFS)%.o: $(COMMONF)%.c
+	$(CMPLR) $(INC) -c $< -o $@
+
+$(OBJFC)%.o: $(COMMONF)%.c
+	$(CMPLR) $(INC) -c $< -o $@
+
+$(OBJFS):
+	@mkdir $(OBJFS)
+
+$(OBJFC):
+	@mkdir $(OBJFC)
 
 $(LPFT):
-	make -C $(PFTF)
+	@make -C $(PFTF)
 
 c:
 	./push_swap "$(ruby -e 'puts (1..10).to_a.shuffle.join(" ")')"
 
 clean:
-	$(DEL) $(SORT_OBJ) $(COMMON_OBJ)
+	@$(DEL) $(SORT_OBJ) $(COMMON_OBJ)
+	@$(DEL) $(CHEC_OBJ) $(COMMON_OBJ)
 #	make clean -C libft
 #	make clean -C $(PFTF) 
 
 fclean:
-	$(DEL) $(SORT_OBJ) $(COMMON_OBJ)
-	$(DEL) $(SORT)
+	@$(DEL) $(SORT_OBJ) $(COMMON_OBJ)
+	@$(DEL) $(SORT)
+	@$(DEL) $(CHEC_OBJ) $(COMMON_OBJ)
+	@$(DEL) $(CHEC)
 #	make fclean -C libft
 #	make fclean -C $(PFTF)
 
 re:
-	make fclean all
+	@make fclean all

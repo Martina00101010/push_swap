@@ -6,12 +6,13 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 00:14:48 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/17 03:43:51 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/20 02:15:01 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "libstack.h"
 #include <unistd.h>
+#include "libft.h"
 
 void	ft_output(t_out *out, char *op)
 {

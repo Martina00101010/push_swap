@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sklen.c                                         :+:      :+:    :+:   */
+/*   ft_skfree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 13:22:52 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/14 17:23:26 by pberge           ###   ########.fr       */
+/*   Created: 2019/10/13 04:15:20 by pberge            #+#    #+#             */
+/*   Updated: 2019/10/20 02:04:44 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "libstack.h"
+#include <stdlib.h>
 
-/*
-**	counting size of stack
-*/
-
-int		ft_sklen(t_stack *sk)
+void	ft_skfree(t_stack **sk)
 {
 	t_stack	*end;
-	int		len;
+	t_stack	*tmp;
 
-	len = 0;
-	if (sk == NULL)
-		return (len);
-	end = sk->next;
-	while (1)
+	if (sk == NULL || *sk == NULL)
+		return ;
+	end = (*sk)->next;
+	while (*sk != end)
 	{
-		len++;
-		if (len > 3 || sk == end)
-			break ;
-		sk = sk->prev;
+		tmp = (*sk)->prev;
+		free(*sk);
+		*sk = tmp;
 	}
-	return (len);
+	free(end);
 }

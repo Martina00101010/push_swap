@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 03:59:45 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/18 04:05:11 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/19 22:43:40 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	ft_print_stacks(t_stack *a, t_stack *b)
 			at = a = NULL;
 		if (bt == b)
 			bt = b = NULL;
-//		bt = (bt == b) ? NULL : bt;
 		if (at == a && bt == b)
 			break ;
 	}

@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_skadd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 02:47:02 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/19 22:53:17 by pberge           ###   ########.fr       */
+/*   Created: 2019/10/13 02:42:04 by pberge            #+#    #+#             */
+/*   Updated: 2019/10/20 02:12:47 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "libstack.h"
 #include <stdlib.h>
 
-int		main(int argc, char **argv)
+void	ft_skadd(t_stack **top, t_stack *el)
 {
-	t_ps	*ps;
-	t_stack	*a;
-	t_stack	*b;
-	int		n;
+	t_stack	*tmp;
 
-	a = NULL;
-	b = NULL;
-	ps = NULL;
-	if (argc < 2)
-		ft_error();
-	n = ft_fill_sk(&a, argv + 1, argc - 1);
-	if (ft_issorted(&a))
+	if (el == NULL)
+		return ;
+	if (*top == NULL)
 	{
-		ft_skfree(&a);
-		return (0);
+		*top = el;
+		return ;
 	}
-	ps = ft_prepare(n);
-	push_swap(&a, &b, ps);
-	ft_end(&a, &b, &ps);
-	return (0);
+	tmp = (*top)->next;
+	(*top)->next = el;
+	el->next = tmp;
+	el->prev = *top;
+	tmp->prev = el;
+	(*top) = el;
 }

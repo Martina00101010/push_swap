@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 05:00:16 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/19 03:30:31 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/19 23:58:25 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_tune_end(t_stack **a, t_out *out)
 		j++;
 		tmp = tmp->next;
 	}
-	tmp->afl = (i <= j) ? 0 : 1;
+	tmp->bfl = (i <= j) ? 0 : 1;
 	ft_tune_b(a, tmp, out);
 }
 

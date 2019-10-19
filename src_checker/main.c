@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_skadd.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 02:42:04 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/13 05:00:02 by pberge           ###   ########.fr       */
+/*   Created: 2019/10/20 00:32:49 by pberge            #+#    #+#             */
+/*   Updated: 2019/10/20 02:46:18 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libps.h"
 
-void	ft_skadd(t_stack **top, t_stack *el)
+int		main(int argc, char **argv)
 {
-	t_stack	*tmp;
+	t_stack	*a;
+	t_stack	*b;
+	int		n;
 
-	if (el == NULL)
-		return ;
-	if (*top == NULL)
-	{
-		*top = el;
-		return ;
-	}
-	tmp = (*top)->next;
-	(*top)->next = el;
-	el->next = tmp;
-	el->prev = *top;
-	tmp->prev = el;
-	(*top) = el;
+	a = NULL;
+	b = NULL;
+	ft_fill_sk(&a, argv + 1, argc - 1);
+	ft_print_stack(a);
+	return (0);
 }

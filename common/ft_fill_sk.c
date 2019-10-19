@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 03:01:20 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/19 05:36:09 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/19 22:52:38 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	ft_get_ints(t_stack **a, char **arr)
 	{
 		num = ft_atoi(arr[i]);
 		if (ft_strlen(arr[i]) > 2 &&
-				((*a)->el == -1 || (*a)->el == 0))
+				(num == -1 || num == 0))
 			ft_exception(a, NULL);
 		ft_duplicate(a, num, ii - i);
 		if (!(new = ft_sknew()))

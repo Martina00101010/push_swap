@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 03:24:56 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/19 03:29:42 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/19 21:21:04 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	ft_toss(t_stack **a, t_stack **b, t_out *out)
 int	ft_steps_a(t_stack *a, t_stack *link)
 {
 	t_stack	*tmp;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	j = 0;
 	i = 0;

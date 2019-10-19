@@ -6,11 +6,12 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 23:45:40 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/18 01:22:45 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/20 02:10:56 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libps.h"
+#include "libstack.h"
+#include <stdlib.h>
 
 /*
 **	swap first two elements in stack
@@ -30,7 +31,8 @@ void	ft_swap(t_stack **sk, t_out *out, char *op)
 	top->next = tmp;
 	tmp->next->prev = tmp;
 	*sk = tmp;
-	ft_output(out, op);
+	if (op != NULL)
+		ft_output(out, op);
 }
 
 /*
@@ -52,11 +54,10 @@ void	ft_push(t_stack **to, t_stack **from, t_out *out, char *op)
 	mv->next = (*to != NULL) ? (*to)->next : mv;
 	if (*to != NULL)
 		(*to)->next = mv;
-	else
-		*to = mv;
 	mv->next->prev = mv;
 	*to = mv;
-	ft_output(out, op);
+	if (op != NULL)
+		ft_output(out, op);
 }
 
 /*
@@ -69,7 +70,8 @@ void	ft_rotate(t_stack **sk, t_out *out, char *op)
 	if (*sk == NULL)
 		return ;
 	*sk = (*sk)->prev;
-	ft_output(out, op);
+	if (op != NULL)
+		ft_output(out, op);
 }
 
 /*
@@ -82,5 +84,6 @@ void	ft_reverse_rotate(t_stack **sk, t_out *out, char *op)
 	if (*sk == NULL)
 		return ;
 	*sk = (*sk)->next;
-	ft_output(out, op);
+	if (op != NULL)
+		ft_output(out, op);
 }
