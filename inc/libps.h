@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 02:53:09 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/18 06:29:43 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/19 05:30:29 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,28 @@ int				ft_sklen(t_stack *sk);
 void			ft_error(void);
 void			ft_exception(t_stack **a, t_ps **ps);
 
-t_ps			*ft_prepare(t_stack **a, t_stack **b, char *arg);
-void			push_swap(t_stack **a, t_stack **b, t_ps *ps);
-void			ft_end(t_stack **a, t_stack **b, t_ps **ps);
-void			ft_output(t_out *out, char *op);
+/*
+**	algo additional functions
+*/
+
+void			ft_validate(char *arg);
+t_ps			*ft_prepare(int n);
+int				ft_fill_sk(t_stack **a, char **arg, int num);
 void			ft_min_max(t_stack *sk, int *min, int *max);
+void			ft_toss(t_stack **a, t_stack **b, t_out *out);
+t_stack			*ft_eval(t_stack **a, t_stack **b, int j);
+void			ft_output(t_out *out, char *op);
+void			ft_end(t_stack **a, t_stack **b, t_ps **ps);
+int				ft_issorted(t_stack **sk);
+
+/*
+**	sorting funcs
+**	according to number of elements in stack
+*/
+
+void			ft_two(t_stack **a, t_out *out);
+void			ft_linksort(t_stack **a, t_stack **b, t_ps *ps);
+void			push_swap(t_stack **a, t_stack **b, t_ps *ps);
 
 /*
 **	stack operations
@@ -81,16 +98,5 @@ void			ft_reverse_rotate(t_stack **sk, t_out *out, char *op);
 
 void			ft_print_stack(t_stack *sk);
 void			ft_print_stacks(t_stack *a, t_stack *b);
-
-/*
-**	sorting funcs
-**	according to number of elements in stack
-*/
-
-/*
-**	sorting by links
-*/
-
-void	ft_linksort(t_stack **a, t_stack **b, t_ps *ps);
 
 #endif

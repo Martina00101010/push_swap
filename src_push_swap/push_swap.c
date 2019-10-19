@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 23:40:09 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/18 07:12:37 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/19 03:22:29 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,34 @@ void	ft_min_max(t_stack *sk, int *min, int *max)
 }
 
 /*
+**	sorts two elements
+*/
+
+void	ft_two(t_stack **a, t_out *out)
+{
+	if ((*a)->el > (*a)->prev->el)
+		ft_swap(a, out, "sa\n");
+}
+
+/*
+**	sorts stack of length three
+*/
+
+void	ft_three(t_stack **a, t_out *out)
+{
+	t_stack *sk;
+
+	sk = *a;
+	if (sk->next->el > sk->el && sk->next->el > sk->prev->el)
+		;
+	else if (sk->el > sk->next->el && sk->el > sk->prev->el)
+		ft_rotate(a, out, "ra\n");
+	else if (sk->prev->el > sk->el && sk->prev->el > sk->next->el)
+		ft_reverse_rotate(a, out, "rra\n");
+	ft_two(a, out);
+}
+
+/*
 **	sort
 */
 
@@ -41,10 +69,14 @@ void	push_swap(t_stack **a, t_stack **b, t_ps *ps)
 	int	min;
 	int	max;
 
-	ft_min_max(*a, &min, &max);
-	
-	ft_linksort(a, b, ps);
-//	ft_print_stacks(*a, *b);
-	//ft_printf("|%s|\n", ps->out.buff);
+	ft_min_max(*a, &min, &max);	
+	if (ps->bsize == 1)
+		return ;
+	else if (ps->bsize == 2)
+		ft_two(a, &ps->out);
+	else if (ps->bsize == 3)
+		ft_three(a, &ps->out);
+	else
+		ft_linksort(a, b, ps);
 	write(1, ps->out.buff, ps->out.i);
 }

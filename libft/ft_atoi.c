@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 14:58:54 by pberge            #+#    #+#             */
-/*   Updated: 2019/02/01 18:36:40 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/18 21:18:35 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ int		ft_atoi(const char *str)
 		s++;
 	while (ft_isdigit(*s))
 	{
-		num *= 10;
-		num += (*s - '0');
-		s++;
 		if (num * 10 / 10 != num)
 			return (neg > 0 ? -1 : 0);
+		num *= 10;
+		if (num + *s - '0' < num)
+			return (neg > 0 ? -1 : 0);
+		num += (*s - '0');
+		s++;
 	}
 	return (num * neg);
 }

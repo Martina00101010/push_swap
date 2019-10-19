@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_skfree.c                                        :+:      :+:    :+:   */
+/*   ft_issorted.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 04:15:20 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/19 05:53:01 by pberge           ###   ########.fr       */
+/*   Created: 2019/10/19 05:05:47 by pberge            #+#    #+#             */
+/*   Updated: 2019/10/19 05:53:46 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libps.h"
-#include <stdlib.h>
 
-void	ft_skfree(t_stack **sk)
+int		ft_issorted(t_stack **sk)
 {
-	t_stack	*end;
-	t_stack	*tmp;
+	t_stack *tmp;
 
-	if (sk == NULL || *sk == NULL)
-		return ;
-	end = (*sk)->next;
-	while (*sk != end)
+	tmp = (*sk)->prev;
+	while (tmp->el != (*sk)->el)
 	{
-		tmp = (*sk)->prev;
-		free(*sk);
-		*sk = tmp;
+		if (tmp->next->el > tmp->el)
+			return (0);
+		tmp = tmp->prev;
 	}
-	free(end);
+	return (1);
 }
