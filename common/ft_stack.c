@@ -6,12 +6,13 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 23:45:40 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/20 02:10:56 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/21 08:32:26 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libstack.h"
 #include <stdlib.h>
+#include "libps.h"
 
 /*
 **	swap first two elements in stack
@@ -22,6 +23,8 @@ void	ft_swap(t_stack **sk, t_out *out, char *op)
 	t_stack	*top;
 	t_stack	*tmp;
 
+	if (*sk == NULL)
+		return ;
 	top = *sk;
 	tmp = top->prev;
 	top->prev = tmp->prev;
@@ -43,6 +46,8 @@ void	ft_push(t_stack **to, t_stack **from, t_out *out, char *op)
 {
 	t_stack	*mv;
 
+	if (*from == NULL)
+		return ;
 	mv = *from;
 	*from = (mv != mv->prev) ? mv->prev : NULL;
 	if (*from != NULL)

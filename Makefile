@@ -6,7 +6,7 @@
 #    By: pberge <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 02:55:16 by pberge            #+#    #+#              #
-#    Updated: 2019/10/20 02:46:49 by pberge           ###   ########.fr        #
+#    Updated: 2019/10/21 11:48:35 by pberge           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ SORT_SRC_ = main.c 				\
 			ft_toss_eval.c		\
 
 COMMON_SRC_ = ft_error.c		\
+			  ft_get_ints.c		\
 			  ft_fill_sk.c		\
-			  ft_print_stack.c	\
   			  ft_stack.c		\
   			  ft_sknew.c		\
   			  ft_skadd.c		\
@@ -32,7 +32,9 @@ COMMON_SRC_ = ft_error.c		\
   			  ft_output.c		\
 			  ft_issorted.c
 
-CHEC_SRC_ = main.c
+CHEC_SRC_ = main.c				\
+			ft_apply.c			\
+			ft_answer.c
 
 SORTF = src_push_swap/
 COMMONF = common/
@@ -59,8 +61,8 @@ DEL = rm -rf
 PFTF = ft_printf
 LPFT = $(PFTF)/libftprintf.a
 
-INC = -I inc -I libft -I ft_printf/inc
-LIB = -L libft -lft -L ft_printf -lftprintf
+INC = -I inc -I ft_printf/libft -I ft_printf/inc
+LIB = -L ft_printf/libft -lft -L ft_printf -lftprintf
 
 all: $(CHEC) $(SORT)
 

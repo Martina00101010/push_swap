@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 23:40:09 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/19 22:42:34 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/21 11:35:37 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	push_swap(t_stack **a, t_stack **b, t_ps *ps)
 	int	min;
 	int	max;
 
-	ft_min_max(*a, &min, &max);	
+	ft_min_max(*a, &min, &max);
 	if (ps->bsize == 1)
 		return ;
 	else if (ps->bsize == 2)

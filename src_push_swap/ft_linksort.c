@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 05:00:16 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/19 23:58:25 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/21 14:09:38 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,31 @@ void	ft_tune_a(t_stack **a, t_stack *link, t_out *out)
 {
 	if (link->afl)
 	{
-		while ((*a)->next->el > link->el)
+		while ((*a)->next->el >= link->el)
 			ft_reverse_rotate(a, out, "rra\n");
 	}
 	else
 	{
-		while ((*a)->el < link->el)
+		while ((*a)->el <= link->el)
+			ft_rotate(a, out, "ra\n");
+	}
+}
+
+/*
+**	rotates stack A shortest way
+**	to shift the smallest element on top
+*/
+
+void	ft_end_a(t_stack **a, t_stack *link, t_out *out)
+{
+	if (link->afl)
+	{
+		while ((*a)->el != link->el)
+			ft_reverse_rotate(a, out, "rra\n");
+	}
+	else
+	{
+		while ((*a)->el != link->el)
 			ft_rotate(a, out, "ra\n");
 	}
 }
@@ -74,8 +93,8 @@ void	ft_tune_end(t_stack **a, t_out *out)
 		j++;
 		tmp = tmp->next;
 	}
-	tmp->bfl = (i <= j) ? 0 : 1;
-	ft_tune_b(a, tmp, out);
+	tmp->afl = (i <= j) ? 0 : 1;
+	ft_end_a(a, tmp, out);
 }
 
 /*

@@ -6,7 +6,7 @@
 #    By: pberge <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 18:46:58 by pberge            #+#    #+#              #
-#    Updated: 2019/09/29 22:32:11 by pberge           ###   ########.fr        #
+#    Updated: 2019/10/21 11:52:53 by pberge           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,22 +36,23 @@ SRC = ft_memset.c	ft_memalloc.c	ft_tolower.c	\
 		  ft_islower.c	ft_isupper.c	ft_swap_ints.c	\
 		  ft_iterative_power.c			\
 		  ft_recursive_power.c			\
-		  ft_lstadd_to_end.c			ft_strrcpy.c
+		  ft_lstadd_to_end.c			ft_strrcpy.c	\
+		  get_next_line.c
 
 OBJF = obj/
 OBJ_ = $(SRC:.c=.o)
 OBJ = $(addprefix $(OBJF), $(OBJ_))
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(OBJF)
 	@ar rc $(NAME) $(OBJ)
 
 all: $(NAME)
 
-$(OBJF)%.o : %.c $(OBJF)
+$(OBJF)%.o : %.c
 	@gcc $(CFLAGS) -c $< -o $@
 
 $(OBJF):
-	mkdir $(OBJF)
+	@mkdir $(OBJF)
 
 clean:
 	@$(DEL) $(OBJ)

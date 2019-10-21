@@ -6,13 +6,14 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 02:49:55 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/19 05:53:06 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/21 15:09:20 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include "libps.h"
+#include <stdio.h>
 
 /*
 **	in case of:
@@ -48,4 +49,29 @@ void	ft_end(t_stack **a, t_stack **b, t_ps **ps)
 	ft_skfree(b);
 	if (ps != NULL)
 		free(*ps);
+}
+
+/*
+**	handle error in arguments validation
+*/
+
+void	ft_valid_error(int fd, char **line)
+{
+	if (line)
+		free(*line);
+	close(fd);
+	remove("tmp");
+	ft_error();
+}
+
+/*
+**	handle error in applying arguments
+*/
+
+void	ft_apply_error(t_stack **a, t_stack **b)
+{
+	ft_skfree(a);
+	ft_skfree(b);
+	remove("tmp");
+	ft_error();
 }

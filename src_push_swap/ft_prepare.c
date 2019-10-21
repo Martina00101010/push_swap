@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 04:09:57 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/19 03:00:49 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/20 06:27:29 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_ps		*ft_prepare(int n)
 		ft_error();
 	ft_bzero(ps, sizeof(t_ps));
 	ft_bzero(&ps->out, sizeof(t_out));
-	ft_bzero(&ps->out.buff, BUFF_SIZE + 1);
+	ft_bzero(&ps->out.buff, LINE_SIZE + 1);
 	ps->bsize = n;
 	return (ps);
 }

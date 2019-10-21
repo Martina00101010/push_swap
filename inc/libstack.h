@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 02:01:05 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/20 02:12:28 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/21 06:18:48 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ typedef struct	s_stack
 	struct s_stack	*next;
 }				t_stack;
 
-# define BUFF_SIZE 1023
+# define LINE_SIZE 1023
 
 typedef struct	s_out
 {
-	char	buff[BUFF_SIZE + 1];
+	char	buff[LINE_SIZE + 1];
 	int		flag;
 	int		i;
 }				t_out;

@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 16:41:09 by pberge            #+#    #+#             */
-/*   Updated: 2018/12/06 23:26:43 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/21 10:49:58 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ static char	**fill_with_words(char **arr, char c, int words_num, char const *s)
 		ft_strncpy(arr[j++], &s[start], end - start);
 		i++;
 	}
-	if (!(arr[j] = (char*)malloc(sizeof(char) * 1)))
-		return (ft_free(&arr, j));
 	arr[j] = ((void *)0);
 	return (arr);
 }

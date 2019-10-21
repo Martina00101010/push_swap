@@ -6,7 +6,7 @@
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 03:24:56 by pberge            #+#    #+#             */
-/*   Updated: 2019/10/19 21:21:04 by pberge           ###   ########.fr       */
+/*   Updated: 2019/10/21 11:36:07 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_toss(t_stack **a, t_stack **b, t_out *out)
 **	counts steps and finds shortest way to rotate stack A
 */
 
-int	ft_steps_a(t_stack *a, t_stack *link)
+int		ft_steps_a(t_stack *a, t_stack *link)
 {
 	t_stack	*tmp;
 	int		i;

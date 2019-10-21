@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   libft_get_next_line.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/30 16:33:44 by pberge            #+#    #+#             */
-/*   Updated: 2019/01/20 22:01:58 by pberge           ###   ########.fr       */
+/*   Created: 2018/12/16 18:15:46 by pberge            #+#    #+#             */
+/*   Updated: 2019/10/21 10:31:26 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIBFT_GET_NEXT_LINE_H
+# define LIBFT_GET_NEXT_LINE_H
+# include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	if (dst == NULL && src == NULL)
-		return (dst);
-	if (src > dst)
-		ft_memcpy(dst, src, len);
-	else
-	{
-		while ((int)(--len) >= 0)
-			ft_memcpy(dst + len, src + len, 1);
-	}
-	return (dst);
-}
+# define BUFF_SIZE 1
+# define ERROR(x) if (!x) return (-1);
+# define ERROR_RET_NULL(x) if (!x) return (NULL);
+
+int		get_next_line(const int fd, char **line);
+
+#endif

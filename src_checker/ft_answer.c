@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_answer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pberge <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/07 23:16:20 by pberge            #+#    #+#             */
-/*   Updated: 2018/12/07 23:17:38 by pberge           ###   ########.fr       */
+/*   Created: 2019/10/21 08:20:33 by pberge            #+#    #+#             */
+/*   Updated: 2019/10/21 08:29:06 by pberge           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libps.h"
 #include <unistd.h>
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_answer(t_stack **a, t_stack **b)
 {
-	write(fd, &c, 1);
+	if (ft_issorted(a) && *b == NULL)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
 }
